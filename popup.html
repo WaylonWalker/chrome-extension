@@ -1,0 +1,152 @@
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!--   <head> -->
+<!--     <title>Website Popup</title> -->
+<!--     <style> -->
+<!--       body { -->
+<!--         width: 300px; -->
+<!--         height: 400px; -->
+<!--         display: flex; -->
+<!--         align-items: center; -->
+<!--         justify-content: center; -->
+<!--         font-family: Arial, sans-serif; -->
+<!--         background-color: #000; -->
+<!--       } -->
+<!--       iframe { -->
+<!--           border: none; -->
+<!--       } -->
+<!--     </style> -->
+<!--   </head> -->
+<!--   <body> -->
+<!--     <iframe src="https://waylonwalker.com/all" width="300" height="400"></iframe> -->
+<!--   </body> -->
+<!-- </html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Website Popup</title>
+    <style>
+      body {
+          background-color: #25262c;
+          color: white;
+        width: 300px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: Arial, sans-serif;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input,
+      textarea {
+        margin-bottom: 10px;
+      }
+      input[type="submit"] {
+        width: 100px;
+      }
+      #websiteForm {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+
+      }
+      #message {
+          height: 200px;
+          width: 275px;
+      }
+
+    .CodeMirror {
+        width: 290px;
+    }
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  border: 0;
+  outline: 0;
+  color: #fff;
+}
+
+input {
+  background: rgba(0,0,0,.25);
+}
+
+#password, input[type="text"] {
+  display: block;
+  margin: 0 0 20px;
+  padding: 8px 12px 10px 12px;
+  border: 1px solid rgba(0,0,0,.5);
+  background: rgba(0,0,0,.25);
+}
+
+textarea {
+  display: block;
+  height: 300px;
+  margin: 0 0 20px;
+  padding: 8px 12px 10px 12px;
+  border: 1px solid rgba(0,0,0,.5);
+  background: rgba(0,0,0,.25);
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+#error {
+    position: fixed;
+    top: 0;
+    margin: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid black;
+    padding: 0.2rem 1rem;
+    text-align: center;
+    color: #e7afaf;
+    background: rgb(76 23 23);
+    display: none;
+}
+      a {
+          color: #82d9d9;
+      }
+    </style>
+    <script src="htmx.min.js"></script>
+    <script src="client-side-templates.js"></script>
+    <script src="mustache.min.js"></script>
+    <link rel="stylesheet" href="codemirror.css">
+    <script src="codemirror.js"></script>
+  </head>
+  <body>
+      <!-- <iframe src="https://thoughts.waylonwalker.com/" width="300" height="300"></iframe> -->
+      <!-- <h1>pyscript</h1> -->
+
+    <p id='error'></p>
+    <div hx-get='https://thoughts.waylonwalker.com/users/me' hx-trigger='load'>
+        get me
+    </div>
+    <form id="websiteForm" action='https://thoughts.waylonwalker.com/post/' method="POST", name='newPost'>
+    <!-- <form id="websiteForm" action='http://localhost:5000/post/' method="POST", name='newPost'> -->
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+      
+      <label for="link">Link:</label>
+      <input type="text" id="link" name="link" value="" required>
+      
+      <label for="tags">Tags:</label>
+      <input type="text" id="tags" name="tags">
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      
+      <input type="submit" value="Submit" id="submit">
+    </form>
+    <script src="popup.js"></script>
+  </body>
+</html>
