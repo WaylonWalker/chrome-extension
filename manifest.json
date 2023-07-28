@@ -17,6 +17,8 @@
     "persistent": false
   },
   "permissions": [
+    "https://thoughts.waylonwalker.com/*",
+    "cookies",
     "storage",
     "activeTab",
     "notifications",
