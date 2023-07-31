@@ -140,6 +140,7 @@ ul#posts li{
     <script src="htmx.min.js"></script>
     <script src="client-side-templates.js"></script>
     <script src="mustache.min.js"></script>
+    <script src="json-enc.js"></script>
     <link rel="stylesheet" href="codemirror.css">
     <link rel="stylesheet" href="main.css">
     <script src="codemirror.js"></script>
@@ -150,14 +151,14 @@ ul#posts li{
 
     <p id='error'></p>
     <div hx-get='https://thoughts.waylonwalker.com/users/me' hx-trigger='load'>
+    <!-- <div hx-get='http://localhost:5000/users/me' hx-trigger='load'> -->
         get me
     </div>
     <!-- <div hx-get='https://thoughts.waylonwalker.com/users/me/new-thought' hx-trigger='load'> -->
     <!--     get me -->
     <!-- </div> -->
-    <!-- <form id="websiteForm" action='https://thoughts.waylonwalker.com/post/html/' method="POST", name='newPost'> -->
-    <form id="websiteForm" hx-post="https://thoughts.waylonwalker.com/post/html/" method="POST" name="newPost" hx-target="#posts" hx-swap="afterbegin">
-    <!-- <form id="websiteForm" action='http://localhost:5000/post/' method="POST", name='newPost'> -->
+    <!-- <form id="websiteForm" hx-post="http://localhost:5000/post/" method="POST" name="newPost" hx-target="#posts" hx-swap="afterbegin" hx-ext='json-enc'> -->
+    <form id="websiteForm" hx-post="https://thoughts.waylonwalker.com/post/" method="POST" name="newPost" hx-target="#posts" hx-swap="afterbegin" hx-ext='json-enc'>
       <label for="title">Title:</label>
       <input type="text" id="title" name="title" required>
       
@@ -172,7 +173,7 @@ ul#posts li{
       
       <input type="submit" value="Submit" id="submit">
     </form>
-        <div id="posts" hx-get="https://thoughts.waylonwalker.com/posts/html/" hx-target="#posts" hx-swap="outerHTML" hx-trigger='load'>
+        <div id="posts" hx-get="https://thoughts.waylonwalker.com/posts/" hx-target="#posts" hx-swap="outerHTML" hx-trigger='load'>
         </div>
     <script src="popup.js"></script>
   </body>
