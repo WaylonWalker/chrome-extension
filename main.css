@@ -131,3 +131,36 @@ ul#posts li{
   width: 100%;
   width: -webkit-fill-available;
 }
+
+/* copied from thoughts */
+
+.post-admin {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: -0.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: #121212;
+}
+.post-admin svg {
+  stroke: #dddcd9;
+}
+
+.post-admin svg:hover {
+  stroke: aqua;
+}
+
+.post-admin button {
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  margin: 0 0rem;
+  background: none;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
