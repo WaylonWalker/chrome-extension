@@ -18,6 +18,8 @@
   },
   "permissions": [
     "https://thoughts.waylonwalker.com/*",
+    "https://dropper.wayl.one/*",
+    "http://localhost:8000/*",
     "cookies",
     "storage",
     "activeTab",
