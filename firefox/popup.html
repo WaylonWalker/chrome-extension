@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Website Popup</title>
+        <script src="htmx.min.js"></script>
+        <script src="json-enc.js"></script>
+        <script src="config.js"></script>
+        <link rel="stylesheet" href="https://thoughts.waylonwalker.com/static/app.css" />
+        <link rel="stylesheet" href="main.css" />
+        <script>
+            document.addEventListener('DOMContentLoaded', initializeApiEndpoints);
+        </script>
+    </head>
+
+    <body>
+        <p id="error"></p>
+        <div hx-get="https://thoughts.waylonwalker.com/users/me" hx-trigger="load">
+            Loading user profile
+        </div>
+        <form id="websiteForm" hx-post="https://thoughts.waylonwalker.com/post/" method="POST" name="newPost"
+              hx-target="#posts" hx-swap="afterbegin" hx-ext="json-enc">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+
+            <label for="link">Link:</label>
+            <input type="text" id="link" name="link" value="" required />
+
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags" />
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <input type="submit" value="Submit" id="submit" />
+        </form>
+        <div id="posts" hx-get="https://thoughts.waylonwalker.com/posts/" hx-target="#posts" hx-swap="outerHTML"
+             hx-trigger="load"></div>
+        <script src="popup.js"></script>
+    </body>
+</html>

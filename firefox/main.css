@@ -1,0 +1,224 @@
+body {
+  overflow-x: hidden;
+  background-color: #25262c;
+  color: white;
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+img {
+  max-width: -webkit-fill-available;
+}
+form {
+  /* margin: auto; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:
+    0px 10px 25px 9px rgba(0, 0, 0, 0.1),
+    0px 10px 73px 14px rgba(0, 0, 0, 0.1),
+    -19px 20px 58px 10px rgba(0, 0, 0, 0.1);
+}
+form.login {
+  width: 300px;
+  padding: 2rem;
+  margin: auto;
+}
+input,
+textarea {
+  margin-bottom: 10px;
+}
+button.copy {
+  width: 25px;
+  height: 25px;
+}
+button,
+input[type="submit"] {
+  width: 100px;
+  display: block;
+  width: 150px;
+  margin: 0 0 20px;
+  padding: 8px 0 10px 0;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.25);
+}
+#websiteForm {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+#websiteForm > input {
+  width: 650px;
+}
+#message {
+  height: 200px;
+  width: 755px;
+}
+
+.CodeMirror {
+  width: 290px;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  border: 0;
+  outline: 0;
+  color: #fff;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+#password,
+input[type="text"] {
+  display: block;
+  margin: 0 0 20px;
+  padding: 8px 12px 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+textarea {
+  display: block;
+  height: 300px;
+  margin: 0 0 20px;
+  padding: 8px 12px 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.25);
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+#error {
+  position: fixed;
+  top: 0;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  padding: 0.2rem 1rem;
+  text-align: center;
+  color: #e7afaf;
+  background: rgb(76 23 23);
+  display: none;
+}
+a {
+  color: #82d9d9;
+}
+
+ul#posts {
+  width: 775px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+ul#posts li {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 100%;
+  width: -webkit-fill-available;
+}
+
+/* copied from thoughts */
+
+.post-admin {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: -0.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: #121212;
+}
+.post-admin svg {
+  stroke: #dddcd9;
+}
+
+.post-admin svg:hover {
+  stroke: aqua;
+}
+
+.post-admin button {
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  margin: 0 0rem;
+  background: none;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+
+::-webkit-scrollbar {
+  height: 0.2rem;
+  width: 0.2rem;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+
+body::-webkit-scrollbar-track {
+  border-radius: 0.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 39 119 / var(--tw-bg-opacity));
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 91 / var(--tw-bg-opacity));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(113 113 122 / var(--tw-bg-opacity));
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(6 182 212 / var(--tw-bg-opacity));
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 211 238 / var(--tw-bg-opacity));
+}
