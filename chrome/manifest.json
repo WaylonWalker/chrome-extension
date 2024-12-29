@@ -3,6 +3,10 @@
   "name": "Website Popup",
   "version": "1.0",
   "description": "Open a website in a popup",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
