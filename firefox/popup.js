@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+  chrome.storage.sync.get({
+    apiUrl: 'https://thoughts.waylonwalker.com'
+  }, (items) => {
+    document.querySelector('base').href = `${items.apiUrl}`;
+    initializeApiEndpoints();
+    document.body.dispatchEvent(new Event('api-ready'));
+  });
+
+  // chrome.runtime.sendMessage({ action: "clearNotification" });
   var openWebsiteButton = document.getElementById("submit");
   var websiteForm = document.getElementById("websiteForm");
   var titleInput = document.getElementById("title");
@@ -13,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < items.length; i++) {
       if (items[i].type.indexOf('image') !== -1) {
         e.preventDefault();
+        // const file = items[i].getAsFile();
         const blob = items[i].getAsFile();
         console.log(`Processing image: size=${blob.size} bytes`);
         
@@ -65,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Pre-fill link field with the current page's URL
-  browser.tabs.query({ active: true, currentWindow: true }).then(function (tabs) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     currentTab = tabs[0];
     localStorageKey = `formData-${currentTab.url}`;
     console.log("setting localStorageKey", localStorageKey);
@@ -83,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Send request to shots service when popup is focused
   window.addEventListener('focus', function() {
-    browser.tabs.query({ active: true, currentWindow: true }).then(function(tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       if (tabs[0]) {
         getApiUrl().then(apiUrl => {
           const shotsUrl = apiUrl.replace('thoughts.waylonwalker.com', 'shots.wayl.one');
@@ -119,3 +129,4 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem(localStorageKey, JSON.stringify(storedFormData));
   });
 });
+

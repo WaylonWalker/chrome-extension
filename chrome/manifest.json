@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Website Popup",
+  "name": "Thoughts Extension",
   "version": "1.0",
-  "description": "Open a website in a popup",
+  "description": "A Firefox extension for managing and accessing thoughts from thoughts.waylonwalker.com in a convenient popup interface",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false
