@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+  chrome.storage.sync.get({
+    apiUrl: 'https://thoughts.waylonwalker.com'
+  }, (items) => {
+    document.querySelector('base').href = `${items.apiUrl}`;
+    initializeApiEndpoints();
+    document.body.dispatchEvent(new Event('api-ready'));
+  });
+
   // chrome.runtime.sendMessage({ action: "clearNotification" });
   var openWebsiteButton = document.getElementById("submit");
   var websiteForm = document.getElementById("websiteForm");
@@ -102,11 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
           .catch(error => console.error('Error sending shots request:', error));
       }
     });
-  });
-
-  openWebsiteButton.addEventListener("click", function () {
-    // Rest of your code to handle the button click event
-    // ...
   });
 
   websiteForm.addEventListener("keyup", function () {
