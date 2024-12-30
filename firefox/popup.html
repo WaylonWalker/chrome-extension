@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>Thoughts</title>
+
+        <script src="./htmx.min.js"></script>
+        <script src="./json-enc.js"></script>
+        <script src="./config.js"></script>
+        <script src="./popup.js"></script>
+        <link rel="stylesheet" href="https://thoughts.waylonwalker.com/static/app.css" />
+        <link rel="stylesheet" href="./main.css" />
+        <base href="https://thoughts.waylonwalker.com">
+    </head>
+
+    <body>
+        <p id="error"></p>
+        <div hx-get="/users/me" hx-trigger="api-ready from:body">
+            Loading user profile
+        </div>
+        <form id="websiteForm" hx-post="/post/" method="POST" name="newPost"
+              hx-target="#posts" hx-swap="afterbegin" hx-ext="json-enc">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+
+            <label for="link">Link:</label>
+            <input type="text" id="link" name="link" value="" required />
+
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags" />
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <input type="submit" value="Submit" id="submit" />
+        </form>
+        <div id="posts" hx-get="/posts/" hx-target="#posts" hx-swap="outerHTML"
+             hx-trigger="api-ready from:body"></div>
+    </body>
+</html>

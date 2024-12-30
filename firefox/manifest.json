@@ -1,8 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Website Popup",
-  "version": "1.0",
-  "description": "Open a website in a popup",
+  "name": "Thoughts Extension",
+  "version": "1.0.0",
+  "description": "A Firefox extension for managing and accessing thoughts from thoughts.waylonwalker.com in a convenient popup interface",
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
@@ -13,8 +17,7 @@
     "default_icon": "icon.png"
   },
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": ["background.js"]
   },
   "permissions": [
     "https://thoughts.waylonwalker.com/*",
@@ -25,5 +28,10 @@
     "activeTab",
     "notifications",
     "tabs"
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "website-popup@example.com"
+    }
+  }
 }

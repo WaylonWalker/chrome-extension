@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+  chrome.storage.sync.get({
+    apiUrl: 'https://thoughts.waylonwalker.com'
+  }, (items) => {
+    document.querySelector('base').href = `${items.apiUrl}`;
+    initializeApiEndpoints();
+    document.body.dispatchEvent(new Event('api-ready'));
+  });
+
   // chrome.runtime.sendMessage({ action: "clearNotification" });
   var openWebsiteButton = document.getElementById("submit");
   var websiteForm = document.getElementById("websiteForm");
@@ -26,8 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append('file', file);
 
         try {
-          const response = await fetch('https://dropper.wayl.one/api/upload/', {
-          // const response = await fetch('http://localhost:8000/api/upload/', {
+          const apiUrl = await getApiUrl();
+          const uploadUrl = apiUrl.replace('thoughts.waylonwalker.com', 'dropper.wayl.one');
+          
+          const response = await fetch(`${uploadUrl}/api/upload/`, {
             method: 'POST',
             body: formData
           });
@@ -39,8 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const data = await response.json();
           
           // Construct the full URL using the returned filename
-          const imageUrl = `https://dropper.wayl.one/api/file/${data.filename}`;
-          // const imageUrl = `http://localhost:8000/api/file/${data.filename}`;
+          const imageUrl = `${uploadUrl}/api/file/${data.filename}`;
           
           // Insert the markdown link at cursor position
           const cursorPos = messageInput.selectionStart;
@@ -86,8 +95,11 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener('focus', function() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       if (tabs[0]) {
-        const shotsUrl = `https://shots.wayl.one/shot/?url=${encodeURIComponent(tabs[0].url)}&height=450&width=800&scaled_width=800&scaled_height=450&selectors=`;
-        fetch(shotsUrl, { method: 'HEAD' })
+        getApiUrl().then(apiUrl => {
+          const shotsUrl = apiUrl.replace('thoughts.waylonwalker.com', 'shots.wayl.one');
+          const fullUrl = `${shotsUrl}/shot/?url=${encodeURIComponent(tabs[0].url)}&height=450&width=800&scaled_width=800&scaled_height=450&selectors=`;
+          return fetch(fullUrl, { method: 'HEAD' });
+        })
           .then(response => {
             console.log('Shots request response:', {
               status: response.status,
@@ -98,11 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
           .catch(error => console.error('Error sending shots request:', error));
       }
     });
-  });
-
-  openWebsiteButton.addEventListener("click", function () {
-    // Rest of your code to handle the button click event
-    // ...
   });
 
   websiteForm.addEventListener("keyup", function () {
@@ -122,3 +129,4 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem(localStorageKey, JSON.stringify(storedFormData));
   });
 });
+
